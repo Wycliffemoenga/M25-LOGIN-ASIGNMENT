@@ -39,7 +39,7 @@ git push -u origin feature/<your-assigned-feature>
 
 ## 📋 Student Feature Assignments
 
-### 👤 Student 1: Real-time Password Strength Meter
+### 👤 BRENDA: Real-time Password Strength Meter
 - **Branch Name**: `feature/password-strength-meter`
 - **Objective**: Add dynamic visual feedback under the password field in the Sign Up tab.
 - **Requirements**:
@@ -54,7 +54,7 @@ git push -u origin feature/<your-assigned-feature>
 
 ---
 
-### 👤 Student 2: "Forgot Password" Glassmorphic Modal
+### 👤 ABIGAEL: "Forgot Password" Glassmorphic Modal
 - **Branch Name**: `feature/forgot-password-modal`
 - **Objective**: Make the "Forgot?" link interactive by opening a frosted glass dialog.
 - **Requirements**:
@@ -65,7 +65,7 @@ git push -u origin feature/<your-assigned-feature>
 
 ---
 
-### 👤 Student 3: Multi-Theme Glass Switcher (Dark / Light / Cyberpunk)
+### 👤 DOREEN: Multi-Theme Glass Switcher (Dark / Light / Cyberpunk)
 - **Branch Name**: `feature/theme-switcher`
 - **Objective**: Add a theme switcher toggle in the top-right corner.
 - **Requirements**:
@@ -78,7 +78,7 @@ git push -u origin feature/<your-assigned-feature>
 
 ---
 
-### 👤 Student 4: Two-Factor / MFA Verification Step
+### 👤 DAPHINE: Two-Factor / MFA Verification Step
 - **Branch Name**: `feature/mfa-verification`
 - **Objective**: Implement a step 2 verification screen after login.
 - **Requirements**:
@@ -89,7 +89,7 @@ git push -u origin feature/<your-assigned-feature>
 
 ---
 
-### 👤 Student 5: Interactive Floating Particle Canvas
+### 👤 DOMNIC: Interactive Floating Particle Canvas
 - **Branch Name**: `feature/interactive-canvas-background`
 - **Objective**: Enhance the ambient background with interactive particles.
 - **Requirements**:
@@ -100,7 +100,7 @@ git push -u origin feature/<your-assigned-feature>
 
 ---
 
-### 👤 Student 6: Remember Me & User Session Persistence
+### 👤 EMMANUEL: Remember Me & User Session Persistence
 - **Branch Name**: `feature/remember-me-storage`
 - **Objective**: Make the "Remember for 30 days" feature functional using web storage.
 - **Requirements**:
