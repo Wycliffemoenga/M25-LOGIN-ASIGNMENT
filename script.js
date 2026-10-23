@@ -179,6 +179,66 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================
+  // Vector Background Image Presets & Switcher
+  // ==========================================
+  const vectorPresets = {
+    'geometric-hexagons': {
+      name: 'Geometric Hexagons',
+      url: 'https://raw.githubusercontent.com/CorruptedArk/svg-wallpapers/master/rainbow_hexagon_and_lines.svg',
+      fallback: 'assets/vectors/geometric-hexagons.svg'
+    },
+    'cosmic-void': {
+      name: 'Cosmic Nebula',
+      url: 'https://raw.githubusercontent.com/CorruptedArk/svg-wallpapers/master/black_hole_flat.svg',
+      fallback: 'assets/vectors/cosmic-void.svg'
+    },
+    'tech-code': {
+      name: 'Cyber Code Matrix',
+      url: 'https://raw.githubusercontent.com/Mikluki/awesome_svg_wallpaper/main/4_code/code.svg',
+      fallback: 'assets/vectors/tech-code.svg'
+    },
+    'abstract-waves': {
+      name: 'Abstract Waves',
+      url: 'https://raw.githubusercontent.com/CorruptedArk/svg-wallpapers/master/winter_abstract.svg',
+      fallback: 'assets/vectors/abstract-waves.svg'
+    },
+    'celestial-dust': {
+      name: 'Celestial Dust',
+      url: 'https://raw.githubusercontent.com/Mikluki/awesome_svg_wallpaper/main/0_pink_planet_dust/2_pink_dust_dark.svg',
+      fallback: 'assets/vectors/celestial-dust.svg'
+    }
+  };
+
+  const vectorSelect = document.getElementById('vectorImageSelect');
+
+  function applyVectorBackground(key) {
+    const preset = vectorPresets[key] || vectorPresets['geometric-hexagons'];
+    document.documentElement.style.setProperty('--bg-vector-image', `url('${preset.url}')`);
+    document.documentElement.style.setProperty('--bg-vector-fallback', `url('${preset.fallback}')`);
+    try {
+      localStorage.setItem('portal_vector_bg', key);
+    } catch (e) {
+      // Storage access error handling
+    }
+  }
+
+  if (vectorSelect) {
+    try {
+      const savedPreset = localStorage.getItem('portal_vector_bg');
+      if (savedPreset && vectorPresets[savedPreset]) {
+        vectorSelect.value = savedPreset;
+        applyVectorBackground(savedPreset);
+      }
+    } catch (e) {
+      // Storage access error handling
+    }
+
+    vectorSelect.addEventListener('change', (e) => {
+      applyVectorBackground(e.target.value);
+    });
+  }
+
+  // ==========================================
   // Interactive 3D Card Tilt Effect
   // ==========================================
   if (window.matchMedia('(min-width: 768px)').matches) {
@@ -193,13 +253,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('mousemove', (e) => {
       if (!cardRect) cardRect = glassCard.getBoundingClientRect();
-      
+
       const cardCenterX = cardRect.left + cardRect.width / 2;
       const cardCenterY = cardRect.top + cardRect.height / 2;
-      
+
       const deltaX = e.clientX - cardCenterX;
       const deltaY = e.clientY - cardCenterY;
-      
+
       const distance = Math.hypot(deltaX, deltaY);
       const maxDistance = 600;
 
