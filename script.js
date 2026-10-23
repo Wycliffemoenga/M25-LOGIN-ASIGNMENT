@@ -178,11 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1200);
   });
 
-  // Ensure form card remains static without tilt animation
-  if (glassCard) {
-    glassCard.style.transform = 'none';
-  }
-
   // ==========================================
   // Vector Background Image Presets & Switcher
   // ==========================================
@@ -240,6 +235,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     vectorSelect.addEventListener('change', (e) => {
       applyVectorBackground(e.target.value);
+    });
+  }
+
+  // ==========================================
+  // Interactive 3D Card Tilt Effect
+  // ==========================================
+  if (window.matchMedia('(min-width: 768px)').matches) {
+    let cardRect = null;
+
+    const updateCardRect = () => {
+      cardRect = glassCard.getBoundingClientRect();
+    };
+
+    window.addEventListener('resize', updateCardRect);
+    window.addEventListener('scroll', updateCardRect);
+
+    document.addEventListener('mousemove', (e) => {
+      if (!cardRect) cardRect = glassCard.getBoundingClientRect();
+
+      const cardCenterX = cardRect.left + cardRect.width / 2;
+      const cardCenterY = cardRect.top + cardRect.height / 2;
+
+      const deltaX = e.clientX - cardCenterX;
+      const deltaY = e.clientY - cardCenterY;
+
+      const distance = Math.hypot(deltaX, deltaY);
+      const maxDistance = 600;
+
+      if (distance < maxDistance) {
+        const tiltX = -(deltaY / 28).toFixed(2);
+        const tiltY = (deltaX / 28).toFixed(2);
+        glassCard.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.01, 1.01, 1.01)`;
+      } else {
+        glassCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      }
+    });
+
+    document.addEventListener('mouseleave', () => {
+      glassCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     });
   }
 });
